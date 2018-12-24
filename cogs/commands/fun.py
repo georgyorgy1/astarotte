@@ -19,6 +19,7 @@ class Fun:
     async def palindrome(self, context, word):
         await context.send(constants.WORD_IS_PALINDROME.format(word) if word == self.__reverse(word) else constants.WORD_IS_NOT_PALINDROME.format(word))
 
+
 def setup(bot):
     bot.add_cog(Fun(bot))
 
