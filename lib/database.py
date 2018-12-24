@@ -14,6 +14,12 @@ class Database:
         except sqlite3.Error as exception:
             self.__logger.log_error(exception)
         return None
+    
+    def __close_cursor(self, cursor):
+        try:
+            cursor.close()
+        except sqlite3.Error as exception:
+            self.__logger.log_error(exception)
 
     def __close_connection(self, connection):
         try:
@@ -30,6 +36,7 @@ class Database:
         except sqlite3.Error as exception:
             self.__logger.log_error(exception)
         finally:
+            self.__close_cursor(cursor)
             self.__close_connection(connection)
 
 
