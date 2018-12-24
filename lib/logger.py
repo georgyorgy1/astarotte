@@ -18,7 +18,7 @@ class Logger:
 
     def __get_logger(self, level):
         logger = logging.getLogger(self.__file_name)
-        if not logger.handlers: # Prevents duplicate log entries
+        if not logger.handlers:
             logger.setLevel(level)
             logger.addHandler(self.__get_file_handler(self.__log_format))
             logger.addHandler(self.__get_stream_handler(self.__log_format))
@@ -32,4 +32,6 @@ class Logger:
 
     def log_warn(self, event):
         self.__get_logger(logging.WARNING).warning(event)
+
+
 
