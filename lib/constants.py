@@ -1,0 +1,11 @@
+BOT_LATENCY = 'Pong! \nLatency: {} ms'
+BOT_RESTART = 'Astarotte is restarting. Please wait...'
+BOT_SHUTDOWN = 'Astarotte is shutting down...'
+BOT_STATS = '{} Build {}\nPython Version: {}\nMemory Usage: {} MB\nAuthor: {}\nUptime: {}'
+BOT_UPTIME = '{} days, {} hours, {} minutes, {} seconds'
+MODULE_LOADED = '{} loaded!'
+SUCCESSFUL_LOGIN_USER_ID = 'User ID: {}'
+SUCCESSFUL_LOGIN_USERNAME = 'Username: {}#{}'
+WORD_IS_NOT_PALINDROME = 'The word {} is not a palindrome'
+WORD_IS_PALINDROME = 'The word {} is a palindrome'
+

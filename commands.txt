@@ -1,0 +1,13 @@
+Module List
+Prefix: a*
+
+- Info:
+a*stats (shows bot info + uptime)
+
+- Fun:
+a*ping (get latency from Discord to the bot)
+a*palindrome <arg> (check if a word is a palindrome or not)
+
+- Owner:
+a*shutdown (shutsdown the bot)
+a*restart (reloads the bot)
