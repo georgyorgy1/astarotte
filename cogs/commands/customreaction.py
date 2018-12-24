@@ -31,7 +31,7 @@ class CustomReaction:
         if result != None:
             return result[0]
         else:
-             return None
+            return None
 
     async def on_message(self, message):
         if message.author.bot == False:
