@@ -1,6 +1,5 @@
 import json
 import json.decoder
-import sqlite3
 
 import discord
 import discord.ext.commands as commands
