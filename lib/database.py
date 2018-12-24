@@ -32,12 +32,14 @@ class Database:
             connection = self.__create_connection()
             cursor = connection.cursor()
             cursor.execute(statement, parameters)
-            return cursor.fetchone()
+            result = cursor.fetchone()
         except sqlite3.Error as exception:
             self.__logger.log_error(exception)
+            return None
         finally:
             self.__close_cursor(cursor)
             self.__close_connection(connection)
+        return result
 
 
 
