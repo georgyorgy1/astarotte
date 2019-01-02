@@ -5,14 +5,12 @@ import discord
 import discord.ext.commands as commands
 
 import lib.database as database
-import lib.logger as logger 
 
 
 class CustomReaction:
     def __init__(self, bot):
         self.__bot = bot
         self.__database = database.Database()
-        self.__logger = logger.Logger('customreaction.py')
 
     def __create_embed(self, json_string):
         try:
@@ -25,8 +23,8 @@ class CustomReaction:
         return None
 
     def __get_custom_reaction(self, guild, trigger):
-        statement = '''SELECT response FROM custom_commands WHERE guild = ? AND command_name = ? ORDER BY RANDOM() LIMIT 1'''
-        result = self.__database.retrieve_single_result(statement, (guild, trigger))
+        statement = "SELECT response FROM custom_commands WHERE guild = ? AND command_name = ? ORDER BY RANDOM() LIMIT 1"
+        result = self.__database.execute_query(statement, (guild, trigger))
         if result != None:
             return result[0]
         else:

@@ -36,7 +36,7 @@ class Info:
         json_file = jsonfile.JSONFile('info.json')
         bot_info = json_file.get_json_file()
         return bot_info[key]
-        
+
     @commands.command()
     async def stats(self, context):
         bot_name = self.__get_bot_json_info('bot_name')

@@ -17,3 +17,4 @@ class Startup:
 
 def setup(bot):
     bot.add_cog(Startup(bot))
+

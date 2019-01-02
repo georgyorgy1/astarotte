@@ -16,3 +16,4 @@ class JSONFile:
             except json.decoder.JSONDecodeError as exception:
                 self.__logger.log_error(exception)
         return json_file
+

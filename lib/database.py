@@ -14,7 +14,7 @@ class Database:
         except sqlite3.Error as exception:
             self.__logger.log_error(exception)
         return None
-    
+
     def __close_cursor(self, cursor):
         try:
             cursor.close()
@@ -27,7 +27,7 @@ class Database:
         except sqlite3.Error as exception:
             self.__logger.log_error(exception)
 
-    def retrieve_single_result(self, statement, parameters):
+    def execute_query(self, statement, parameters):
         try:
             connection = self.__create_connection()
             cursor = connection.cursor()
