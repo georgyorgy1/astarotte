@@ -1,5 +1,4 @@
 # AstarotteBot
-&nbsp; 
 
 Dependences:
 1. Python 3.5 and above
