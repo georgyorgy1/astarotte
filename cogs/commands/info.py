@@ -47,7 +47,12 @@ class Info:
         uptime = self.__get_bot_uptime()
         await context.send(constants.BOT_STATS.format(bot_name, build, python_version, memory_usage, author, uptime))
 
+    @commands.command(aliases=['cmds', 'commands', 'help', 'h'])
+    async def get_commands(self, context):
+        await context.send(constants.COMMANDS_LIST.format('https://github.com/georgyorgy1/astarotte/wiki/Commands-List'))
+
 
 def setup(bot):
+    bot.remove_command('help')
     bot.add_cog(Info(bot))
 
