@@ -130,7 +130,7 @@ class CustomReaction:
     @commands.command(aliases=['pcr'])
     @commands.has_permissions(manage_guild=True)
     async def purge_custom_reactions(self, context, *, trigger):
-        trigger_string = ''.join(trigger)
+        trigger_string = str(''.join(trigger))
         guild = str(context.message.guild.id)
         if self.__trigger_exists(trigger_string, guild):
             statement = "DELETE FROM custom_commands WHERE command_name = ? AND guild = ?"
@@ -146,7 +146,7 @@ class CustomReaction:
         if message.author.bot == False:
             custom_reaction = self.__get_custom_reaction(str(message.guild.id), str(message.content))
             if custom_reaction != None:
-                embed = self.__create_embed(custom_reaction)
+                embed = self.__create_embed(str(custom_reaction))
                 if embed != None:
                     await message.channel.send("", embed=embed)
                 else: 
