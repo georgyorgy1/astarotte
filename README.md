@@ -1,5 +1,4 @@
-# AstarotteBot 
-## Build 20190102-1600
+# AstarotteBot
 &nbsp; 
 
 Dependences:
