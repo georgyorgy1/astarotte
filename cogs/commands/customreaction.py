@@ -38,6 +38,8 @@ class CustomReaction:
             return embed
         except ValueError:
             return None
+        except TypeError:
+            return None
         return None
 
     # prevents the bot from throwing IndexError in the logs. Not a good solution but still a solution (a temporary one)
@@ -146,7 +148,7 @@ class CustomReaction:
         if message.author.bot == False:
             custom_reaction = self.__get_custom_reaction(str(message.guild.id), str(message.content))
             if custom_reaction != None:
-                embed = self.__create_embed(str(custom_reaction))
+                embed = self.__create_embed(custom_reaction)
                 if embed != None:
                     await message.channel.send("", embed=embed)
                 else: 
