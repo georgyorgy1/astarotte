@@ -85,12 +85,15 @@ class CustomReaction(commands.Cog):
     @commands.command(aliases=['acr'])
     @commands.has_permissions(manage_guild=True)
     async def add_custom_reaction(self, context, trigger, *, reaction):
-        statement = "INSERT INTO custom_commands VALUES (?, ?, ?)"
-        success = self._database.execute_update(statement, (str(context.message.guild.id), trigger, str(reaction)))
-        if success:
-            await context.send(constants.ADD_CUSTOM_REACTION_SUCCESS.format(trigger, reaction))
+        if len(reaction) <= 120:
+            statement = "INSERT INTO custom_commands VALUES (?, ?, ?)"
+            success = self._database.execute_update(statement, (str(context.message.guild.id), trigger, str(reaction)))
+            if success:
+                await context.send(constants.ADD_CUSTOM_REACTION_SUCCESS.format(trigger, reaction))
+            else:
+                await context.send(constants.ADD_CUSTOM_REACTION_FAIL.format(trigger, reaction))
         else:
-            await context.send(constants.ADD_CUSTOM_REACTION_FAIL.format(trigger, reaction))
+            await context.send('Too many characters. Limit is 120 characters (including spaces)')
 
     @commands.command(aliases=['lcr'])
     @commands.has_permissions(manage_guild=True)
