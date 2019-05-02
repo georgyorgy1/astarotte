@@ -1,5 +1,3 @@
-import json
-import json.decoder
 import os
 import sys
 import time
@@ -11,13 +9,13 @@ import lib.constants as constants
 import lib.jsonfile as jsonfile
 
 
-class Info:
+class Info(commands.Cog):
     def __init__(self, bot):
-        self.__bot = bot
-        self.__start_time = time.time()
+        self._bot = bot
+        self._start_time = time.time()
 
-    def __get_bot_uptime(self):
-        raw_seconds = int(time.time() - self.__start_time)
+    def _get_bot_uptime(self):
+        raw_seconds = int(time.time() - self._start_time)
         raw_minutes = int(raw_seconds / 60)        
         raw_hours = int(raw_seconds / 3600)
         seconds = int(raw_seconds % 60) if raw_seconds >= 60 and raw_minutes >= 1 else raw_seconds
@@ -26,25 +24,25 @@ class Info:
         days = int(raw_seconds / 86400)
         return constants.BOT_UPTIME.format(str(days), str(hours), str(minutes), str(seconds))
 
-    def __get_memory_usage(self):
+    def _get_memory_usage(self):
         return str(int((psutil.Process(os.getpid()).memory_info().rss / 1048576))) # 1 MB = 1048576 Bytes
 
-    def __get_python_version(self):
+    def _get_python_version(self):
         return str(sys.version).replace('\n', '')
 
-    def __get_bot_json_info(self, key):
+    def _get_bot_json_info(self, key):
         json_file = jsonfile.JSONFile('info.json')
         bot_info = json_file.get_json_file()
         return bot_info[key]
 
     @commands.command()
     async def stats(self, context):
-        bot_name = self.__get_bot_json_info('bot_name')
-        build = self.__get_bot_json_info('build')
-        python_version = self.__get_python_version()
-        memory_usage = self.__get_memory_usage()
-        author = self.__get_bot_json_info('author')
-        uptime = self.__get_bot_uptime()
+        bot_name = self._get_bot_json_info('bot_name')
+        build = self._get_bot_json_info('build')
+        python_version = self._get_python_version()
+        memory_usage = self._get_memory_usage()
+        author = self._get_bot_json_info('author')
+        uptime = self._get_bot_uptime()
         await context.send(constants.BOT_STATS.format(bot_name, build, python_version, memory_usage, author, uptime))
 
     @commands.command(aliases=['cmds', 'commands', 'help', 'h'])

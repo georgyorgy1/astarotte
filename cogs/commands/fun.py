@@ -3,21 +3,25 @@ import discord.ext.commands as commands
 import lib.constants as constants
 
 
-class Fun:
+class Fun(commands.Cog):
     def __init__(self, bot):
-        self.__bot = bot
+        self._bot = bot
 
-    def __reverse(self, string):
+    def _reverse(self, string):
         return string[::-1]
+
+    def _get_api_latency(self):
+        latency = int(self._bot.latency * 1000)
+        return str(latency)
 
     @commands.command()
     async def ping(self, context):
         # Latency is in ms (seconds * 1000)
-        await context.send(constants.BOT_LATENCY.format(str(int(self.__bot.latency * 1000))))
+        await context.send(constants.BOT_LATENCY.format(self._get_api_latency()))
 
     @commands.command()
     async def palindrome(self, context, word):
-        await context.send(constants.WORD_IS_PALINDROME.format(word) if word == self.__reverse(word) else constants.WORD_IS_NOT_PALINDROME.format(word))
+        await context.send(constants.WORD_IS_PALINDROME.format(word) if word == self._reverse(word) else constants.WORD_IS_NOT_PALINDROME.format(word))
 
 
 def setup(bot):

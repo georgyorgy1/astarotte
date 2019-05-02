@@ -4,15 +4,16 @@ import lib.constants as constants
 import lib.logger as logger
 
 
-class Startup:
+class Startup(commands.Cog):
     def __init__(self, bot):
-        self.__bot = bot
-        self.__logger = logger.Logger('startup.py')
-
+        self._bot = bot
+        self._logger = logger.Logger('startup.py')
+    
+    @commands.Cog.listener()
     async def on_ready(self):
-        self.__logger.log_info('Astarotte has successfully logged in to Discord!')
-        self.__logger.log_info(constants.SUCCESSFUL_LOGIN_USERNAME.format(self.__bot.user.name, self.__bot.user.discriminator))
-        self.__logger.log_info(constants.SUCCESSFUL_LOGIN_USER_ID.format(str(self.__bot.user.id)))
+        self._logger.log_info('Astarotte has successfully logged in to Discord!')
+        self._logger.log_info(constants.SUCCESSFUL_LOGIN_USERNAME.format(self._bot.user.name, self._bot.user.discriminator))
+        self._logger.log_info(constants.SUCCESSFUL_LOGIN_USER_ID.format(str(self._bot.user.id)))
 
 
 def setup(bot):
