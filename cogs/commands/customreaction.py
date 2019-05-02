@@ -141,7 +141,8 @@ class CustomReaction(commands.Cog):
                 await context.send(constants.PURGE_CUSTOM_REACTIONS_FAIL.format(trigger_string))
         else:
             await context.send(constants.PURGE_CUSTOM_REACTIONS_INVALID_TRIGGER.format(trigger_string))
-
+    
+    @commands.Cog.listener()
     async def on_message(self, message):
         if message.author.bot == False:
             custom_reaction = self._get_custom_reaction(str(message.guild.id), str(message.content))
