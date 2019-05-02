@@ -1,7 +1,7 @@
 # AstarotteBot
 
 Dependences:
-1. Python 3.6 and above
+1. Python 3.5.3 and above
 1. psutil
 2. Discord.py 
 &nbsp;
